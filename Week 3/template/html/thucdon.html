@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thực đơn</title>
+    <link rel="stylesheet" href="../css/thucdon.css">
+</head>
+<body>
+    <main>
+        <ul>
+            <li>
+                <button class="button" onclick="change(this)">» Quản lý cán bộ (Đăng ký thông tin)</button>
+            </li>
+            <li>
+                <button class="button" onclick="change(this)">» Phân quyền</button>
+            </li>
+            <li>
+                <button class="button" onclick="change(this)">» Cổng thông tin đào tạo và người học</button>
+            </li>
+            <li>
+                <button class="button" onclick="change(this)">» Quản lý văn bản và hồ sơ công việc</button>
+            </li>
+            <li>
+                <button class="button" onclick="change(this)">» Hành chính công</button>
+            </li>
+            <li>
+                <button class="button" onclick="change(this)">» Hệ thống thông tin báo cáo</button>
+            </li>
+        </ul>
+        <label id="button-value"></label>
+    </main>
+
+    <script>
+        function change(val) {
+            document.getElementById("button-value").innerHTML = val.innerHTML
+        }
+    </script>
+</body>
+</html>
