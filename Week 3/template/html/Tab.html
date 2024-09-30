@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab</title>
+    <link rel="stylesheet" href="../css/Tab.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><button id="vne" onclick="change(this)">VnExpress</button></li>
+            <li><button id="dan" onclick="change(this)">Dantri</button></li>
+            <li><button id="voa" onclick="change(this)">VOANews</button></li>
+            <li><button id="zin" onclick="change(this)">Zing</button></li>
+        </ul>
+    </nav>
+    <main>
+        <iframe id="frame"></iframe>
+    </main>
+
+    <script type="text/javascript">
+        function change(val) {
+            id_frame = document.getElementById("frame")
+            
+            if (val.id == "vne") {
+                id_frame.src = "https://vnexpress.net/"
+            } else if (val.id == "dan") {
+                id_frame.src = "https://dantri.com.vn/"
+            } else if (val.id == "voa") {
+                id_frame.src = "https://voanews.com/"
+            } else if (val.id == "zin") {
+                id_frame.src = "https://zingmp3.vn/"
+            }
+        }
+    </script>
+</body>
+</html>
