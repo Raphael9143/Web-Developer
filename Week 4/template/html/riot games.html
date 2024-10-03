@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riot Games</title>
+    <style>
+        body {
+            margin: auto;
+            background-color: white;
+        }
+
+        .container {
+            gap: 10px;
+        }
+
+        .header, .content {
+            background-color: black;
+        }
+
+        .header>header {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+        }
+
+        .header>nav {
+            margin: 0 10px;
+            display: flex;
+            justify-content: space-evenly;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        .button {
+            color: white;
+            text-align: center;
+            font-size: 36px;
+            width: 100%;
+            padding: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        .content {
+            display: grid;
+        }
+
+        article, aside {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 1200px) {
+            .button {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 960px) {
+            .button {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .button {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .header>nav {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <header>
+                <img src="../../assets/logo.png" width="30%">
+            </header>
+            <nav>
+                <div class="button">GAMES</div>
+                <div class="button">FORGE</div>
+                <div class="button">ESPORTS</div>
+                <div class="button">ENTERTAINMENT</div>
+                <div class="button">BUSINESS</div>
+            </nav>
+        </div>
+        <main>
+            <div class="content">
+                <article >
+                    <h1>WELCOME</h1>
+                </article>
+                <aside>
+                    <h1>RECENTLY PLAYED</h1>
+                </aside>
+            </div>
+        </main>
+        <footer></footer>
+    </div>
+
+</body>
+
+</html>
