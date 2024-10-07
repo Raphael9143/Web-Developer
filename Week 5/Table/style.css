@@ -1,0 +1,35 @@
+header {
+    padding-bottom: 10px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid black;
+    gap: 0px;
+}
+
+th {
+    background-color: magenta;
+    text-align: center;
+}
+
+tbody>tr:nth-child(odd) {
+    background-color: antiquewhite;
+}
+
+tbody>tr:hover {
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
+input {
+    cursor: pointer;
+}
+
+#deletebutton {
+    display: none;
+}

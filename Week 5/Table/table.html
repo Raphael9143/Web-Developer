@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <button id="deletebutton" onclick="deleteButtonOnClick()">Xoá</button>
+    </header>
+    <table>
+        <thead>
+            <tr id="row-header">
+                <th>
+                    <input type="checkbox" name="" id="header" onclick="headerChecking()">
+                </th>
+                <th>Họ tên</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="row-box1">
+                <td>
+                    <input type="checkbox" name="" id="checkbox1" onclick="boxChecking()">
+                </td>
+                <td>Hoàng Văn A</td>
+                <td>2/2/2002</td>
+                <td>Nam</td>
+            </tr>
+            <tr id="row-box2">
+                <td>
+                    <input type="checkbox" name="" id="checkbox2" onclick="boxChecking()">
+                </td>
+                <td>Trần Thị B</td>
+                <td>1/1/2001</td>
+                <td>Nữ</td>
+            </tr>
+            <tr id="row-box3">
+                <td>
+                    <input type="checkbox" name="" id="checkbox3" onclick="boxChecking()">
+                </td>   
+                <td>Đào Xuân C</td>
+                <td>3/3/2003</td>
+                <td>Nam</td>
+            </tr>
+            <tr id="row-box4">
+                <td>
+                    <input type="checkbox" name="" id="checkbox4" onclick="boxChecking()">
+                </td>
+                <td>Tống Minh D</td>
+                <td>1/1/2002</td>
+                <td>Nam</td>
+            </tr>
+            <tr id="row-box5">
+                <td>
+                    <input type="checkbox" name="" id="checkbox5" onclick="boxChecking()">
+                </td>
+                <td>Nguyễn Trà E</td>
+                <td>1/1/2002</td>
+                <td>Nữ</td>
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
