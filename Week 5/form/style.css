@@ -1,0 +1,86 @@
+div {
+    display: flex;
+    margin: 5px;
+    gap: 10px;
+
+    label {
+        width: 120px;
+    }
+
+    input,
+    textarea {
+        width: 300px;
+        height: 25px;
+        border: 1px solid gray;
+        padding-left: 5px;
+    }
+}
+
+.checkbox>label,
+.gender>label,
+.checkbox>input,
+.gender>input {
+    width: auto;
+    height: auto;
+}
+
+#name,
+#datebirth,
+#email,
+#username {
+    background-color: rgb(0, 255, 255);
+
+    &:hover {
+        background-color: rgb(0, 230, 230);
+    }
+}
+
+#address,
+#number,
+#password,
+#repassword,
+#note {
+    background-color: rgb(241, 241, 241);
+
+    &:hover {
+        background-color: rgb(220, 220, 220);
+    }
+}
+
+.gender>label,
+.gender>input,
+.checkbox>label,
+.checkbox>input,
+button {
+    cursor: pointer;
+}
+
+.button {
+    gap: 5px;
+}
+
+#note {
+    height: 50px;
+}
+
+.approve,
+.decline {
+    background-color: #2196f3;
+    border: none;
+    width: auto;
+    padding: 5px 15px;
+    height: 35px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgb(20, 130, 230);
+    }
+}
+
+span {
+    color: red;
+    font-weight: 600;
+    width: 400px;
+}

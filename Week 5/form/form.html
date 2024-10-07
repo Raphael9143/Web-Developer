@@ -5,94 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
-    <style>
-        div {
-            display: flex;
-            margin: 5px;
-            gap: 10px;
-
-            label {
-                width: 120px;
-            }
-
-            input,
-            textarea {
-                width: 300px;
-                height: 25px;
-                border: 1px solid gray;
-                padding-left: 5px;
-            }
-        }
-
-        .checkbox>label,
-        .gender>label,
-        .checkbox>input,
-        .gender>input {
-            width: auto;
-            height: auto;
-        }
-
-        #name,
-        #datebirth,
-        #email,
-        #username {
-            background-color: rgb(0, 255, 255);
-
-            &:hover {
-                background-color: rgb(0, 230, 230);
-            }
-        }
-
-        #address,
-        #number,
-        #password,
-        #repassword,
-        #note {
-            background-color: rgb(241, 241, 241);
-
-            &:hover {
-                background-color: rgb(220, 220, 220);
-            }
-        }
-
-        .gender>label,
-        .gender>input,
-        .checkbox>label,
-        .checkbox>input,
-        button {
-            cursor: pointer;
-        }
-
-        .button {
-            gap: 5px;
-        }
-
-        #note {
-            height: 50px;
-        }
-
-        .approve,
-        .decline {
-            background-color: #2196f3;
-            border: none;
-            width: auto;
-            padding: 5px 15px;
-            height: 35px;
-            font-size: 14px;
-            color: white;
-            cursor: pointer;
-
-            &:hover {
-                background-color: rgb(20, 130, 230);
-            }
-        }
-
-        span {
-            color: red;
-            font-weight: 600;
-            width: 400px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -184,37 +97,7 @@
             </div>
         </form>
     </div>
-    <script type="text/javascript">
-        let defaultText = "Quý vị chưa nhập "
-        function isEmpty() {
-            if (document.forms['frm']['name'].value == "") {
-                document.getElementById('name-error').innerHTML = defaultText + "họ tên"
-            }
-            if (document.forms['frm']['datebirth'].value == "") {
-                document.getElementById('datebirth-error').innerHTML = defaultText + "ngày sinh"
-            }
-            if (document.forms['frm']['email'].value == "") {
-                document.getElementById('email-error').innerHTML = defaultText + "email"
-            }
-            if (document.forms['frm']['username'].value == "") {
-                document.getElementById('username-error').innerHTML = defaultText + "tên người dùng"
-            }
-            if (document.forms['frm']['password'].value == "") {
-                document.getElementById('password-error').innerHTML = defaultText + "mật khẩu"
-            }
-            if (document.forms['frm']['password'].value != "" && (document.forms['frm']['password'].value != document.forms['frm']['repassword'].value)) {
-                document.getElementById('password-error').innerHTML = "Mật khẩu và gõ lại mật khẩu không trùng nhau"
-            }
-
-        }
-        function loadFile(event) {
-            var output = document.getElementById('output')
-            output.src = URL.createObjectURL(event.target.files[0])
-            output.onload = function() {
-                URL.revokeObjectURL(output.src)
-            }
-        }
-    </script>
+    <script type="text/javascript" src="index.js"></script>
 </body>
 
 </html> 
