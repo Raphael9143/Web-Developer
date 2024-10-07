@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        div {
+            display: flex;
+            margin: 5px;
+            gap: 10px;
+
+            label {
+                width: 120px;
+            }
+
+            input,
+            textarea {
+                width: 300px;
+                height: 25px;
+                border: 1px solid gray;
+                padding-left: 5px;
+            }
+        }
+
+        .checkbox>label,
+        .gender>label,
+        .checkbox>input,
+        .gender>input {
+            width: auto;
+            height: auto;
+        }
+
+        #name,
+        #datebirth,
+        #email,
+        #username {
+            background-color: rgb(0, 255, 255);
+
+            &:hover {
+                background-color: rgb(0, 230, 230);
+            }
+        }
+
+        #address,
+        #number,
+        #password,
+        #repassword,
+        #note {
+            background-color: rgb(241, 241, 241);
+
+            &:hover {
+                background-color: rgb(220, 220, 220);
+            }
+        }
+
+        .gender>label,
+        .gender>input,
+        .checkbox>label,
+        .checkbox>input,
+        button {
+            cursor: pointer;
+        }
+
+        .button {
+            gap: 5px;
+        }
+
+        #note {
+            height: 50px;
+        }
+
+        .approve,
+        .decline {
+            background-color: #2196f3;
+            border: none;
+            width: auto;
+            padding: 5px 15px;
+            height: 35px;
+            font-size: 14px;
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgb(20, 130, 230);
+            }
+        }
+
+        span {
+            color: red;
+            font-weight: 600;
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form name="frm">
+            <div>
+                <label for="name">Họ tên: </label>
+                <input type="text" id="name" name="name">
+                <span id="name-error"></span>
+            </div>
+            <div>
+                <label for="address">Địa chỉ: </label>
+                <input type="text" id="address" name="address">
+            </div>
+            <div style="display: flex;">
+                <label for="gender">Giới tính: </label>
+                <div class="gender">
+                    <input type="radio" id="male" name="Gender" value="Nam">
+                    <label for="male">Nam</label>
+                </div>
+                <div class="gender">
+                    <input type="radio" id="female" name="Gender" value="Nữ">
+                    <label for="female">Nữ</label>
+                </div>
+            </div>
+            <div>
+                <label for="datebirth">Ngày sinh: </label>
+                <input type="datetime" name="Ngày sinh" id="datebirth" placeholder="dd/mm/yyyy">
+                <span id="datebirth-error"></span>
+            </div>
+            <div>
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="email">
+                <span id="email-error"></span>
+            </div>
+            <div>
+                <label for="number">Điện thoại: </label>
+                <input type="number" name="number" id="number">
+            </div>
+            <div>
+                <label for="course">Khoá đăng kí: </label>
+                <div class="course">
+                    <div class="checkbox">
+                        <input type="checkbox" name="english" id="english">
+                        <label for="english">Tiếng Anh</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" name="management" id="management">
+                        <label for="management">Quản trị</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" name="it" id="it">
+                        <label for="it">CNTT</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label for="username">Tên sử dụng: </label>
+                <input type="text" name="username" id="username">
+                <span id="username-error"></span>
+            </div>
+            <div>
+                <label for="password">Mật khẩu: </label>
+                <input type="password" name="password" id="password">
+                <span id="password-error"></span>
+            </div>
+            <div>
+                <label for="repassword">Gõ lại mật khẩu: </label>
+                <input type="password" name="repassword" id="repassword">
+            </div>
+            <div>
+                <label for="note">Ghi chú: </label>
+                <textarea name="note" id="note"></textarea>
+            </div>
+            <div>
+                <label for=""></label>
+                <img id="output">
+            </div>
+            <div style="padding-top: 20px;">
+                <label for="portrait">Ảnh chân dung: </label>
+                <input type="file" name="portrait" id="portrait" accept=".jpg, .jpeg, .png" onchange="loadFile(event)" style="border: none;">
+            </div>
+            <div class="button">
+                <label></label>
+                <div>
+                    <input class="approve" type="button" onclick="isEmpty()" value="Chấp nhận">
+                    <input class="decline" type="button" value="Bỏ qua">
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        let defaultText = "Quý vị chưa nhập "
+        function isEmpty() {
+            if (document.forms['frm']['name'].value == "") {
+                document.getElementById('name-error').innerHTML = defaultText + "họ tên"
+            }
+            if (document.forms['frm']['datebirth'].value == "") {
+                document.getElementById('datebirth-error').innerHTML = defaultText + "ngày sinh"
+            }
+            if (document.forms['frm']['email'].value == "") {
+                document.getElementById('email-error').innerHTML = defaultText + "email"
+            }
+            if (document.forms['frm']['username'].value == "") {
+                document.getElementById('username-error').innerHTML = defaultText + "tên người dùng"
+            }
+            if (document.forms['frm']['password'].value == "") {
+                document.getElementById('password-error').innerHTML = defaultText + "mật khẩu"
+            }
+            if (document.forms['frm']['password'].value != "" && (document.forms['frm']['password'].value != document.forms['frm']['repassword'].value)) {
+                document.getElementById('password-error').innerHTML = "Mật khẩu và gõ lại mật khẩu không trùng nhau"
+            }
+
+        }
+        function loadFile(event) {
+            var output = document.getElementById('output')
+            output.src = URL.createObjectURL(event.target.files[0])
+            output.onload = function() {
+                URL.revokeObjectURL(output.src)
+            }
+        }
+    </script>
+</body>
+
+</html> 
