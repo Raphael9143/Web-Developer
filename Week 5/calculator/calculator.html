@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background">
+        <img src="image (3).png" alt="">
+    </div>
+    <div class="container">
+        <div class="display">
+            <label id="result">0</label>
+            <label id="temporary">0</label>
+        </div>
+        <table>
+            <tr>
+                <td id="delete" onclick="reset()">AC</td>
+                <td id="change" onclick="press('#')">Del</td>
+                <td id="percent" onclick="press('%')">%</td>
+                <td id="divide" onclick="press('÷')">÷</td>
+            </tr>
+            <tr>
+                <td id="seven" onclick="press(7)">7</td>
+                <td id="eight" onclick="press(8)">8</td>
+                <td id="nine" onclick="press(9)">9</td>
+                <td id="multiply" onclick="press('×')">×</td>
+            </tr>
+            <tr>
+                <td id="four" onclick="press(4)">4</td>
+                <td id="five" onclick="press(5)">5</td>
+                <td id="six" onclick="press(6)">6</td>
+                <td id="subtract" onclick="press('-')">-</td>
+            </tr>
+            <tr>
+                <td id="one" onclick="press(1)">1</td>
+                <td id="two" onclick="press(2)">2</td>
+                <td id="three" onclick="press(3)">3</td>
+                <td id="plus" onclick="press('+')">+</td>
+            </tr>
+            <tr>
+                <td id="bracket" onclick="press('!')">( )</td>
+                <td id="zero" onclick="press(0)">0</td>
+                <td id="point" onclick="press('.')">.</td>
+                <td id="equal" onclick="press('=')">=</td>
+            </tr>
+        </table>
+        <span id="error"></span>
+    </div>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+
+</html>
