@@ -80,6 +80,7 @@ function convertString(expr) {
 }
 
 function press(symbol) {
+    result.style = "color: black"
     innerText(errorText, "")
     if (result.textContent != "0") {
         innerText(result, defaultText)
@@ -104,10 +105,18 @@ function press(symbol) {
             if (lastIdx != "%") {
                 if (lastIdx != ")" || (lastIdx == ")" && countBrackets(expression) > 0)) {
                     innerText(result, "Syntax Error")
+                    result.style = "color: red"
+                    return
                 }
             }
         }
-        innerText(result, Math.round(eval(convertString(expression)) * 100) / 100)
+        let output = Math.round(eval(convertString(expression)) * 100) / 100
+        if (Number.isNaN(output) || !Number.isFinite(output)) {
+            innerText(result, "MATH Error")
+            result.style = "color: red"
+            return
+        }
+        innerText(result, output)
         innerText(temporary, expression)
         return
     }
@@ -137,14 +146,16 @@ function press(symbol) {
     }
 
     if (symbol < "0" || symbol > "9") {
-        if (symbol == "%" || symbol == "." || symbol == ")") {
-            if (lastIdx >= "0" && lastIdx <= "9") {
-                innerText(temporary, expression + symbol)
-            }
-            return
-        } else if (lastIdx < "0" || lastIdx > "9") {
+        // if (symbol == "%" || symbol == "." || symbol == ")") {
+        //     if (lastIdx >= "0" && lastIdx <= "9") {
+        //         innerText(temporary, expression + symbol)
+        //     }
+        //     return
+         if (lastIdx < "0" || lastIdx > "9") {
             if (lastIdx != "(" && lastIdx != "%" && lastIdx != ")") {
                 innerText(temporary, expression.slice(0, len - 1) + symbol)
+            } else if (lastIdx == ")" && (symbol == "%" || symbol == ".")) {
+                return
             } else {
                 innerText(temporary, expression + symbol)
             }
