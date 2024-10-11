@@ -49,28 +49,32 @@ function countBrackets(expr) {
 }
 
 function convertString(expr) {
-    for (let i = 0; i < expr.length; i++) {
-        if (expr.charAt(i) == "×") {
-            expr = expr.slice(0, i) + "*" + expr.slice(i + 1)
-        } else if (expr.charAt(i) == "÷") {
-            expr = expr.slice(0, i) + "/" + expr.slice(i + 1)
-        } else if (expr.charAt(i) == "%") {
-            console.log(i)
-            let prevOp = -1
-            for (let j = 0; j < i; j++) {
-                let curOp = expr.charAt(j)
-                if (curOp == "+" || curOp == "-" || curOp == "*" || curOp == "/") {
-                    prevOp = j
-                }
-            }
-            if (prevOp == -1) {
-                expr = "(" + expr.slice(0, i) + "/100)" + expr.slice(i + 1)
-            } else {
-                expr = expr.slice(0, prevOp + 1) + "(" + expr.slice(prevOp + 1, i) + "/100)" + expr.slice(i + 1) 
-            }
-            console.log(prevOp)
-        }
-    }
+    // for (let i = 0; i < expr.length; i++) {
+    //     if (expr.charAt(i) == "×") {
+    //         expr = expr.slice(0, i) + "*" + expr.slice(i + 1)
+    //     } else if (expr.charAt(i) == "÷") {
+    //         expr = expr.slice(0, i) + "/" + expr.slice(i + 1)
+    //     } else if (expr.charAt(i) == "%") {
+    //         console.log(i)
+    //         let prevOp = -1
+    //         for (let j = 0; j < i; j++) {
+    //             let curOp = expr.charAt(j)
+    //             if (curOp == "+" || curOp == "-" || curOp == "*" || curOp == "/") {
+    //                 prevOp = j
+    //             }
+    //         }
+    //         if (prevOp == -1) {
+    //             expr = "(" + expr.slice(0, i) + "/100)" + expr.slice(i + 1)
+    //         } else {
+    //             expr = expr.slice(0, prevOp + 1) + "(" + expr.slice(prevOp + 1, i) + "/100)" + expr.slice(i + 1)
+    //         }
+    //         console.log(prevOp)
+    //     }
+    // }
+
+    expr = expr.replace(/×/g, "*")
+    expr = expr.replace(/÷/g, "/")
+    expr = expr.replace(/(\d+)%/g, "($1/100)")
     console.log(expr)
     return expr
 }
@@ -83,7 +87,7 @@ function press(symbol) {
     if (temporary.textContent == "0") {
         if (symbol == ".") {
             innerText(temporary, "0.")
-        } else if (symbol == "-" || symbol == "(") {
+        } else if (symbol == "-" || symbol == "(" || (symbol >= "0" && symbol <= "9")) {
             innerText(temporary, symbol)
         } else if (symbol > "9" || symbol < "0") {
             return
@@ -93,11 +97,12 @@ function press(symbol) {
 
     let expression = temporary.textContent
     let len = expression.length
+    let lastIdx = expression.charAt(len - 1)
 
     if (symbol == "=") {
-        if (expression.charAt(len - 1) > "9" || expression.charAt(len - 1) < "0") {
-            if (expression.charAt(len - 1) != "%") {
-                if (expression.charAt(len - 1) != ")" || (expression.charAt(len - 1) == ")" && countBrackets(expression) > 0)) {
+        if (lastIdx > "9" || lastIdx < "0") {
+            if (lastIdx != "%") {
+                if (lastIdx != ")" || (lastIdx == ")" && countBrackets(expression) > 0)) {
                     innerText(result, "Syntax Error")
                 }
             }
@@ -119,25 +124,42 @@ function press(symbol) {
     }
 
     if (symbol == "!") {
-        if ((expression.charAt(len - 1) >= "0" && expression.charAt(len - 1) <= "9") || expression.charAt(len - 1) == ")" || expression.charAt(len - 1) == "%") {
+        if ((lastIdx >= "0" && lastIdx <= "9") || lastIdx == ")" || lastIdx == "%") {
             if (countBrackets(expression) > 0) {
                 innerText(temporary, expression + ")")
             } else {
                 innerText(temporary, expression + "×(")
             }
-        } else if (expression.charAt(len - 1)) {
+        } else if (lastIdx < "0" || lastIdx > "9") {
             innerText(temporary, expression + "(")
         }
         return
     }
 
-    let lastIdx = expression.charAt(len - 1)
-
-    if ((lastIdx >= "0" && lastIdx <= "9") || lastIdx == "%" || lastIdx == ")") {
-        innerText(temporary, expression + symbol)
-    } else if ((lastIdx < "0" || lastIdx > "9") && (symbol < "0" || symbol > "9")) {
-        innerText(temporary, expression.slice(0, len - 1) + symbol)
-    } else {
-        innerText(temporary, expression + symbol)
+    if (symbol < "0" || symbol > "9") {
+        if (symbol == "%" || symbol == "." || symbol == ")") {
+            if (lastIdx >= "0" && lastIdx <= "9") {
+                innerText(temporary, expression + symbol)
+            }
+            return
+        } else if (lastIdx < "0" || lastIdx > "9") {
+            if (lastIdx != "(" && lastIdx != "%" && lastIdx != ")") {
+                innerText(temporary, expression.slice(0, len - 1) + symbol)
+            } else {
+                innerText(temporary, expression + symbol)
+            }
+            return
+        }
+    } else if (lastIdx == "%" || lastIdx == ")") {
+        innerText(temporary, expression + "×" + symbol)
+        return
     }
+    innerText(temporary, expression + symbol)
+    // if ((lastIdx >= "0" && lastIdx <= "9") || lastIdx == "%" || lastIdx == ")") {
+    //     innerText(temporary, expression + symbol)
+    // } else if ((lastIdx < "0" || lastIdx > "9") && (symbol < "0" || symbol > "9") ) {
+    //     innerText(temporary, expression.slice(0, len - 1) + symbol)
+    // } else {
+    //     innerText(temporary, expression + symbol)
+    // }
 }
