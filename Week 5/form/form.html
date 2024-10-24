@@ -86,18 +86,20 @@
             </div>
             <div style="padding-top: 20px;">
                 <label for="portrait">Ảnh chân dung: </label>
-                <input type="file" name="portrait" id="portrait" accept=".jpg, .jpeg, .png" onchange="loadFile(event)" style="border: none;">
+                <input type="file" name="portrait" id="portrait" accept=".jpg, .jpeg, .png" onchange="loadFile(event)"
+                    style="border: none;">
             </div>
             <div class="button">
                 <label></label>
                 <div>
-                    <input class="approve" type="button" onclick="isEmpty()" value="Chấp nhận">
+                    <input class="approve" id="approve" type="button" onclick="isEmpty()" value="Chấp nhận">
                     <input class="decline" type="button" value="Bỏ qua">
                 </div>
             </div>
         </form>
     </div>
-    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="index.js">
+    </script>
 </body>
 
-</html> 
+</html>
