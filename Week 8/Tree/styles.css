@@ -1,0 +1,15 @@
+ul, li {
+    list-style-type: none;
+}
+
+span {
+    cursor: pointer;
+}
+
+.no-child {
+    padding-left: 20px;
+}
+
+.has-children>ul {
+    display: none;
+}
