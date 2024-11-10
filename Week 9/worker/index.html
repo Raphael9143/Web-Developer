@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sepia</title>
+</head>
+
+<body>
+    <div>
+        <label for="image">Chọn tệp ảnh</label>
+        <input type="file" id="img-input" name="image" accept="image/*" onchange="loadImage(event)">
+    </div>
+    <div>
+        <img id="load-img">
+    </div>
+    <div>
+        <label for="">Ảnh sau khi đã chỉnh sửa</label>
+        <canvas id="canvas"></canvas>
+    </div>
+
+
+    <script>
+        window.onload = function () {
+            let img = document.getElementById('load-img')
+            let canvas = document.getElementById('canvas')
+            let ctx = canvas.getContext('2d')
+            let worker = new Worker("worker.js")
+            let imgInput = document.getElementById('img-input')
+            let file = imgInput.files[0]
+            let reader = new FileReader()
+
+            imgInput.onchange = function (e) {
+                let file = e.target.files[0]
+                if (file) {
+                    let reader = new FileReader()
+                    reader.onload = function (event) {
+                        img.src = event.target.result
+                    }
+                    reader.readAsDataURL(file)
+                }
+            }
+
+            img.onload = function () {
+                canvas.width = img.width
+                canvas.height = img.height
+
+                ctx.drawImage(img, 0, 0)
+
+                let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+
+                worker.postMessage(imageData)
+            }
+
+            worker.onmessage = function (e) {
+                let imageData = e.data
+                ctx.putImageData(imageData, 0, 0)
+            }
+        }
+
+    </script>
+</body>
+
+</html>
